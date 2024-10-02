@@ -3,7 +3,7 @@ package br.com.challenge.loan.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client {
+public class ClientDTO {
 
     private Integer age;
     private String cpf;
@@ -13,7 +13,7 @@ public class Client {
 
     private final List<Loan> loans = new ArrayList<>();
 
-    public Client(Integer age, String cpf, String name, Double income, String location) {
+    public ClientDTO(Integer age, String cpf, String name, Double income, String location) {
         this.age = age;
         this.cpf = cpf;
         this.name = name;
