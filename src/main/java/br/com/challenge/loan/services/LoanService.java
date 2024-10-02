@@ -1,6 +1,6 @@
 package br.com.challenge.loan.services;
 
-import br.com.challenge.loan.dto.ClientDTO;
+import br.com.challenge.loan.dto.CustomerDTO;
 import br.com.challenge.loan.dto.LoansDTO;
 import br.com.challenge.loan.entities.Loan;
 import br.com.challenge.loan.entities.Type;
@@ -11,55 +11,55 @@ import java.util.List;
 @Service
 public class LoanService {
 
-    public LoansDTO loansAvailable(ClientDTO clientDTO) {
-        LoansDTO dto = new LoansDTO(clientDTO.getName());
-        checkLoanModalities(clientDTO, dto.getLoans());
+    public LoansDTO loansAvailable(CustomerDTO customerDTO) {
+        LoansDTO dto = new LoansDTO(customerDTO.getName());
+        checkLoanModalities(customerDTO, dto.getLoans());
         return dto;
     }
 
-    private void checkLoanModalities(ClientDTO clientDTO, List<Loan> list) {
-        if (personalLoan(clientDTO)) {
+    private void checkLoanModalities(CustomerDTO customerDTO, List<Loan> list) {
+        if (personalLoan(customerDTO)) {
             list.add(new Loan(Type.PERSONAL, 4.0));
         }
-        if (consignmentLoan(clientDTO)) {
+        if (consignmentLoan(customerDTO)) {
             list.add(new Loan(Type.CONSIGNMENT, 2.0));
         }
-        if (guaranteedLoan(clientDTO)) {
+        if (guaranteedLoan(customerDTO)) {
             list.add(new Loan(Type.GUARANTEED, 3.0));
         }
     }
 
-    private boolean personalLoan(ClientDTO clientDTO) {
+    private boolean personalLoan(CustomerDTO customerDTO) {
         double minValue = 3000.0;
         double maxValue = 5000.0;
         int age = 30;
         String location = "SP";
 
-        if (clientDTO.getIncome() <= minValue) {
+        if (customerDTO.getIncome() <= minValue) {
             return true;
-        } else if (clientDTO.getIncome() >= minValue && clientDTO.getIncome() <= maxValue
-                && clientDTO.getAge() < age && clientDTO.getLocation().equals(location)) {
+        } else if (customerDTO.getIncome() >= minValue && customerDTO.getIncome() <= maxValue
+                && customerDTO.getAge() < age && customerDTO.getLocation().equals(location)) {
             return true;
         } else {
             return false;
         }
     }
 
-    private boolean consignmentLoan(ClientDTO clientDTO) {
+    private boolean consignmentLoan(CustomerDTO customerDTO) {
         double value = 5000.0;
-        return clientDTO.getIncome() >= value;
+        return customerDTO.getIncome() >= value;
     }
 
-    private boolean guaranteedLoan(ClientDTO clientDTO) {
+    private boolean guaranteedLoan(CustomerDTO customerDTO) {
         double minValue = 3000.0;
         double maxValue = 5000.0;
         int age = 30;
         String location = "SP";
 
-        if (clientDTO.getIncome() <= minValue) {
+        if (customerDTO.getIncome() <= minValue) {
             return true;
-        } else if (clientDTO.getIncome() >= minValue && clientDTO.getIncome() <= maxValue
-                && clientDTO.getAge() < age && clientDTO.getLocation().equals(location)) {
+        } else if (customerDTO.getIncome() >= minValue && customerDTO.getIncome() <= maxValue
+                && customerDTO.getAge() < age && customerDTO.getLocation().equals(location)) {
             return true;
         }
         return false;

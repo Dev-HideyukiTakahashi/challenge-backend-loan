@@ -1,19 +1,31 @@
-package br.com.challenge.loan.entities;
+package br.com.challenge.loan.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import org.hibernate.validator.constraints.br.CPF;
 
-public class Client {
+public class CustomerDTO {
 
+    @Min(value = 18, message = "Age above 18 only!")
+    @NotNull(message = "Age must be not null!!")
     private Integer age;
+    @CPF(message = "Invalid format!")
+    @NotNull(message = "CPF must be not null!!")
     private String cpf;
+    @NotBlank(message = "Name must be not null!")
     private String name;
+    @PositiveOrZero(message = "Income must be positive value or zero!!")
+    @NotNull(message = "Income must be not null!!")
     private Double income;
+    @NotBlank(message = "Location must be not null!")
     private String location;
 
-    private final List<Loan> loans = new ArrayList<>();
+    public CustomerDTO() {
+    }
 
-    public Client(Integer age, String cpf, String name, Double income, String location) {
+    public CustomerDTO(Integer age, String cpf, String name, Double income, String location) {
         this.age = age;
         this.cpf = cpf;
         this.name = name;
@@ -59,13 +71,5 @@ public class Client {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public List<Loan> getLoans() {
-        return loans;
-    }
-
-    public void addLoan(Loan loan) {
-        loans.add(loan);
     }
 }

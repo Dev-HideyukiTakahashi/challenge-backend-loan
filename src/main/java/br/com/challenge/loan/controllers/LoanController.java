@@ -1,8 +1,7 @@
 package br.com.challenge.loan.controllers;
 
-import br.com.challenge.loan.dto.ClientDTO;
+import br.com.challenge.loan.dto.CustomerDTO;
 import br.com.challenge.loan.dto.LoansDTO;
-import br.com.challenge.loan.entities.Client;
 import br.com.challenge.loan.services.LoanService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class LoanController {
     private LoanService loanService;
 
     @PostMapping(path = "/customer-loans")
-    public ResponseEntity<LoansDTO> customerLoans(@RequestBody @Valid ClientDTO clientDTO){
-        return ResponseEntity.ok(loanService.loansAvailable(clientDTO));
+    public ResponseEntity<LoansDTO> customerLoans(@RequestBody @Valid CustomerDTO customerDTO){
+        return ResponseEntity.ok(loanService.loansAvailable(customerDTO));
     }
 }
