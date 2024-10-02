@@ -1,7 +1,7 @@
 package br.com.challenge.loan.services;
 
+import br.com.challenge.loan.dto.ClientDTO;
 import br.com.challenge.loan.dto.LoansDTO;
-import br.com.challenge.loan.entities.ClientDTO;
 import br.com.challenge.loan.entities.Loan;
 import br.com.challenge.loan.entities.Type;
 import org.springframework.stereotype.Service;

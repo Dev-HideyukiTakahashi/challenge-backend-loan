@@ -1,11 +1,25 @@
 package br.com.challenge.loan.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import org.hibernate.validator.constraints.br.CPF;
+
 public class ClientDTO {
 
+    @Min(value = 18, message = "Age above 18 only!")
+    @NotNull(message = "Age must be not null!!")
     private Integer age;
+    @CPF(message = "Invalid format!")
+    @NotNull(message = "CPF must be not null!!")
     private String cpf;
+    @NotBlank(message = "Name must be not null!")
     private String name;
+    @PositiveOrZero(message = "Income must be positive value or zero!!")
+    @NotNull(message = "Income must be not null!!")
     private Double income;
+    @NotBlank(message = "Location must be not null!")
     private String location;
 
     public ClientDTO() {
